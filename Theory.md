@@ -29,3 +29,18 @@ Pure and view functions do not cost gas if are not called from non pure/view fun
 Technically, this means that Ethereum node executes transaction locally, the same way as miner would execute it, obtains execution result, but does not include transaction into block. Though, when transaction is being executed locally, EVM still counts how much gas does it use, and this calculated value is what Remix shows to you. You may need this number to estimate how much gas the function will use when called on-chain, i.e. in published transaction, called directly or from another contract.
 
 [Transaction call gas consumption](https://ethereum.stackexchange.com/questions/69024/transaction-function-call-gas-consumption)
+
+## Data access
+EVS can access and store information in six places:
+This data location can only be specified for array, struct or mapping types as structs.
+1. Stackexchange
+2. Memory
+3. Storage
+4. Calldata
+5. Code
+6. Logs
+
+Both memory and calldata varibles are defined with function scope, so are removed after the stack frame is deleted.
+The difference between memory and calldata is that calldata is immutable.
+Storage is defined by default for contract parameters. Function parameters can't be defined as storage since these are temporal.
+
