@@ -14,6 +14,11 @@ contract SimpleStorage {
         contractFavoriteNumber = _favoriteNumber;
     }
 
+    function getContractFavoriteNumber() public view returns(uint256) {
+        return contractFavoriteNumber;
+    }
+
+
 	function addPerson(string calldata _name, uint256 _favoriteNumber) public {
 		Person memory newPerson = Person({
             favoriteNumber: _favoriteNumber,

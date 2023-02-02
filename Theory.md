@@ -1,6 +1,7 @@
 ## Fundamental concepts
-- Every deploy / call of a smart contract is a transaction. Hence has a sender, a receiver and a transaction cost measured in gas
-- `view` and `pure` functions, when called in the code, don't spend gas. They spend gas when they're called by a contract though
+- Every deploy / call of a smart contract is a transaction. Hence has a sender, a receiver and a transaction cost measured in gas.
+- `view` and `pure` functions, when called in the code, don't spend gas. They spend gas when they're called by a contract though.
+- The hability for contracts to interact with each other it's what is known as composibility.
 
 ## Call vs Transaction
 ### Call
@@ -49,8 +50,12 @@ Memory should be used when declaring variables (both function parameters as well
 [More info](https://ethereum.stackexchange.com/questions/74442/when-should-i-use-calldata-and-when-should-i-use-memory)
 
 ## uint overflow/underflow
-This is something that used to happend before solidity 0.8. When you reached the maximum or minimum of integers, and operate on these, they used to swap their values. That's why it's common to see the use of  [SafeMath](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/math/SafeMath.sol) library in old smart contracts.
+This is something that used to happend before solidity 0.8. When you reached the maximum or minimum of integers, and exceed that limit, they used to turn back to 0 or max value respectively. That's why it's common to see the use of  [SafeMath](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/math/SafeMath.sol) library in old smart contracts.
 
 [More info on integer overflow](https://en.wikipedia.org/wiki/Integer_overflow)
 [More info on integer overflow/underflow in solidity](https://ethereum.stackexchange.com/questions/83226/integer-underflow-overflow)
 
+## Contract composition
+
+- The imported contract's version must be compatible with the current one, otherwise will throw an error.
+- In order to interact with any contract you'll always need the address of the contract and the ABI (Application Binary Interface) of the contract
