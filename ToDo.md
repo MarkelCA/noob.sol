@@ -1,7 +1,8 @@
 # To do
 
 ## In progress
-- [ ] Gas optimization
 
 ## Backlog
+- [ ] Verify wrongly a deployed contract from etherscan
+- [ ] Gas optimization
 - [ ] On-chain vs off-chain

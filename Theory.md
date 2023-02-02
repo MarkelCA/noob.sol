@@ -44,3 +44,13 @@ Both memory and calldata varibles are defined with function scope, so are remove
 The difference between memory and calldata is that calldata is immutable.
 Storage is defined by default for contract parameters. Function parameters can't be defined as storage since these are temporal.
 
+### Memory vs Calldata
+Memory should be used when declaring variables (both function parameters as well as inside the logic of a function) that you want stored in memory (temporary), and calldata must be used when declaring an external function's dynamic parameters.
+[More info](https://ethereum.stackexchange.com/questions/74442/when-should-i-use-calldata-and-when-should-i-use-memory)
+
+## uint overflow/underflow
+This is something that used to happend before solidity 0.8. When you reached the maximum or minimum of integers, and operate on these, they used to swap their values. That's why it's common to see the use of  [SafeMath](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/math/SafeMath.sol) library in old smart contracts.
+
+[More info on integer overflow](https://en.wikipedia.org/wiki/Integer_overflow)
+[More info on integer overflow/underflow in solidity](https://ethereum.stackexchange.com/questions/83226/integer-underflow-overflow)
+
