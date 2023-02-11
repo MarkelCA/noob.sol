@@ -59,3 +59,53 @@ This is something that used to happend before solidity 0.8. When you reached the
 
 - The imported contract's version must be compatible with the current one, otherwise will throw an error.
 - In order to interact with any contract you'll always need the address of the contract and the ABI (Application Binary Interface) of the contract
+
+## Ethereum nodes
+### Remix VM
+From the docs, for the JavaScript VM environment:
+"transactions will be executed in a sandbox blockchain in the browser. This means nothing will be persisted and a page reload will restart a new blockchain from scratch, the old one will not be saved."
+
+So Remix uses a private blockchain and accounts by default that you can use for testing.
+
+### What is running a node
+From the [ethereum doc](https://ethereum.org/en/run-a-node/): Running an Ethereum node may sound complicated at first, but it's merely the act of continuously running client software on a computer while connected to the internet. While offline, your node will simply be inactive until it gets back online and catches up with the latest changes.
+
+### Why run a local node
+The major reason that you would want to run a local node is that it guarantees you a consistent view of the current network state. When you fetch data from a public, untrusted node then that node can lie to you about the current state of the network; i.e. whether your transactions have been confirmed, whether you have recieved a transaction, your current balance, etc.
+
+ More info on ethereum nodes: https://ethereum.org/en/developers/docs/nodes-and-clients/
+
+### Running a light node
+You can run a light node with [geth](https://geth.ethereum.org/downloads)
+
+Run a node in light mode: 
+```
+geth --goerli --syncmode "light" --http
+```
+The http flag it's to be able to connect through http-rcp, so we can connect our Metamask to our local node.
+
+You now can use web3 to query the blockchain using our irpc file:
+```
+geth attach <your-path>/geth.ipc
+```
+
+A JavaScript console will be opened
+
+```javascript
+# We consult the Balance of a random address:
+eth.getBalance('0x8dC847Af872947Ac18d5d63fA646EB65d4D99560')
+# response: 443558686120856878635 (In Wei)
+
+# We get the chaid ID of the current locally-running blockchain:
+web3.eth.chainId()
+# response: "0x5"
+```
+
+## Merkle Patricia Tries
+The data structure running behind some of these processes are Merkle Patricia Tries, This being offers the autenticity of a Merkle tree with a more efficient memory management.
+More info:
+- https://ethereum.org/en/developers/docs/data-structures-and-encoding/patricia-merkle-trie/
+- https://kronosapiens.github.io/blog/2018/07/04/patricia-trees.html
+- https://www.youtube.com/watch?v=mZnD3yGNO5k&t=209s
+
+
