@@ -109,3 +109,14 @@ More info:
 - https://www.youtube.com/watch?v=mZnD3yGNO5k&t=209s
 
 
+# Oracles
+Blockchains are deterministic, thus,they can't make http calls to fetch data. For that purpouse an oracle is used, such as Chainlink oracle system.
+The smart contract calls an adapter, which is off-chain and makes the http request, then sends the data back to the smart contract as a regular transaction.
+
+Even if the running adapter is off-chain, the adapter contract is deployed to the blockchain, to serve like a standarized interface.
+
+The smart contract uses the adapter to make a transaction to a certain address with the desired data to make the call. 
+The off-chain adapter is programmed to listen to this address' transactions, so when a transaction happens the off-chain adapter makes the http call using the transaction's data, and then sends the result back to the blockchain using a transaction.
+Example:
+- Adapter on-chain (interface): https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol
+- Adapter off-chain (implementation): https://github.com/smartcontractkit/chainlink/blob/develop/core/gethwrappers/generated/aggregator_v3_interface/aggregator_v3_interface.go
